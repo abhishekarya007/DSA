@@ -21,7 +21,16 @@ void insertAtHead(Node* &head , int val){
 
 }
 
-void insertAtTail(Node* head , int val){
+void deleteAtHead(Node* &head){
+    if(head == NULL){
+      cout<<"No node available to delete";  
+    }else{
+        head = head->next;
+    } 
+
+}
+
+void insertAtTail(Node* head , int val){ //head is just a pointer here so won't affect head
 
     while(head != NULL){
 
@@ -44,17 +53,19 @@ void insertAtPostion(Node* &head, int val, int position){
         return;
     }
 
-    Node* temp = head;
+    Node* temp = head;  //took temp because I passed head by reference
 
     while(currentPosition != position-1){
 
         temp = temp->next;
+        if(temp == NULL){
+            cout<<"Enter a valid position"<<endl;
+        return;
+    }
         currentPosition++;
 
     }
-    if(temp->next == NULL){
-        cout<<"Enter a valid position";
-    }
+    
 
     newNode->next = temp->next;
     temp->next = newNode;
@@ -94,8 +105,9 @@ int main(){
     insertAtTail(head,7);
     displayLinkedList(head);
 
-    insertAtPostion(head,6,9);
+    insertAtPostion(head,6,5);
     displayLinkedList(head);
+    deleteAtHead(head);
     displayLinkedList(head);
 
 
