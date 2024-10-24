@@ -25,7 +25,9 @@ void deleteAtHead(Node* &head){
     if(head == NULL){
       cout<<"No node available to delete";  
     }else{
+        Node* temp = head;
         head = head->next;
+        free(temp); // or delete temp;
     } 
 
 }
@@ -41,6 +43,27 @@ void insertAtTail(Node* head , int val){ //head is just a pointer here so won't 
         }
         head = head->next;
     }
+}
+
+void deleteAtTail(Node* &head){
+    if(head == NULL){
+        cout<<"Nothing to delete"<<endl;
+        return;
+    }
+    if(head->next == NULL){
+        delete head;
+        head = NULL;
+        cout<<"sadf";
+    } 
+    Node* temp = head;
+
+    while(temp->next->next != NULL){ 
+        temp = temp->next;
+    }
+
+    delete temp->next; // clears the memory location
+    temp->next = NULL; // sets the next pointer ot null as tail deleted
+
 }
 
 void insertAtPostion(Node* &head, int val, int position){
@@ -73,9 +96,9 @@ void insertAtPostion(Node* &head, int val, int position){
 }
 
 void displayLinkedList(Node* head){
-
+    cout<<head<<endl;
     Node* temp = head;
-
+    cout<<"jii"<<endl;
     while(temp != NULL){
         cout<<temp->val<<"->";
         temp = temp->next;
@@ -108,6 +131,16 @@ int main(){
     insertAtPostion(head,6,5);
     displayLinkedList(head);
     deleteAtHead(head);
+    deleteAtTail(head);
+    deleteAtTail(head);
+    deleteAtTail(head);
+    deleteAtTail(head);
+    deleteAtTail(head);
+    deleteAtTail(head);
+    deleteAtTail(head);
+    displayLinkedList(head);
+    deleteAtTail(head);
+
     displayLinkedList(head);
 
 
